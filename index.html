@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Para ti ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      background: linear-gradient(
+        135deg,
+        #ffd6e0,
+        #ffe8ef,
+        #f8d9ff
+      );
+    }
+
+    .card {
+      width: 90%;
+      max-width: 400px;
+
+      padding: 40px 30px;
+
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.85);
+
+      border-radius: 25px;
+
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.15);
+
+      backdrop-filter: blur(10px);
+
+      z-index: 10;
+
+      transition: 0.5s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      color: #d94f70;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    button {
+      border: none;
+
+      padding: 14px 30px;
+
+      border-radius: 30px;
+
+      background: #e85d7c;
+
+      color: white;
+
+      font-size: 16px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #d94f70;
+      transform: scale(1.05);
+    }
+
+    #mensaje {
+      display: none;
+
+      margin-top: 25px;
+
+      font-size: 18px;
+
+      color: #c94568;
+
+      animation: aparecer 1s ease forwards;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .corazon {
+      position: fixed;
+
+      bottom: -50px;
+
+      pointer-events: none;
+
+      animation: subir linear forwards;
+
+      z-index: 1;
+    }
+
+    @keyframes subir {
+      0% {
+        transform:
+          translateY(0)
+          rotate(0deg);
+
+        opacity: 1;
+      }
+
+      100% {
+        transform:
+          translateY(-120vh)
+          rotate(360deg);
+
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h1>Hola ❤️</h1>
+
+    <p>
+      Hice una cosita pequeña para ti.
+      Porque aparentemente ser programador también sirve
+      para estas cosas.
+    </p>
+
+    <button onclick="abrirMensaje()">
+      Ábreme
+    </button>
+
+    <div id="mensaje">
+      Me alegra mucho haberte conocido. ❤️
+      <br><br>
+      Me encantas muchooooo.❤️
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function abrirMensaje() {
+
+      const mensaje = document.getElementById("mensaje");
+
+      mensaje.style.display = "block";
+
+      crearCorazones();
+
+    }
+
+
+    function crearCorazones() {
+
+      const corazones = [
+        "❤️",
+        "🩷",
+        "💕",
+        "💗",
+        "💖"
+      ];
+
+      for (let i = 0; i < 35; i++) {
+
+        setTimeout(() => {
+
+          const corazon =
+            document.createElement("div");
+
+          corazon.classList.add("corazon");
+
+          corazon.innerHTML =
+            corazones[
+              Math.floor(
+                Math.random() * corazones.length
+              )
+            ];
+
+          corazon.style.left =
+            Math.random() * 100 + "vw";
+
+          corazon.style.fontSize =
+            Math.random() * 25 + 15 + "px";
+
+          corazon.style.animationDuration =
+            Math.random() * 3 + 3 + "s";
+
+          document.body.appendChild(corazon);
+
+
+          setTimeout(() => {
+
+            corazon.remove();
+
+          }, 6000);
+
+
+        }, i * 80);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
